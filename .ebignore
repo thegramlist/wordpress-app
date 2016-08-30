@@ -1,0 +1,9 @@
+# Elastic Beanstalk Files
+.elasticbeanstalk/*
+!.elasticbeanstalk/*.cfg.yml
+!.elasticbeanstalk/*.global.yml
+.git/
+wp-content/themes/brand-knew/node_modules
+wp-content/uploads/wp-migrate-db
+wp-content/uploads/wpcf7_captcha
+local-config.php
