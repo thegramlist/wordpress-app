@@ -46,6 +46,8 @@ get_header();
 			echo '</div>';
 			echo '<a class="view-details square-button" href="'.get_the_permalink().'">View Details</a>';
 			echo '</li>';
+			endwhile;
+			echo '</ul>';
 		endif;	
 		wp_reset_query();
 		?>
