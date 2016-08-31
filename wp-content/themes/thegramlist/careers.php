@@ -46,17 +46,6 @@ get_header();
 			echo '</div>';
 			echo '<a class="view-details square-button" href="'.get_the_permalink().'">View Details</a>';
 			echo '</li>';
-
-			echo '<li>';
-			echo '<a class="title" href="'.get_the_permalink().'">'.get_the_title().'</a>';
-			echo '<div class="excerpt">';
-			echo the_excerpt();
-			// echo excerpt( strip_tags( get_the_content() ),40);
-			echo '</div>';
-			echo '<a class="view-details square-button" href="'.get_the_permalink().'">View Details</a>';
-			echo '</li>';
-			endwhile;
-			echo '</ul>';
 		endif;	
 		wp_reset_query();
 		?>
