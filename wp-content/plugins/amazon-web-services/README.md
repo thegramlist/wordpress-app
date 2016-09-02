@@ -35,6 +35,9 @@ This plugin is required by other plugins, which use its libraries and its settin
 
 ## Changelog ##
 
+### 0.3.7 - 2016-09-01 ###
+* Improvement: No longer delete plugin data on uninstall. Manual removal possible, as per this [doc](https://deliciousbrains.com/wp-offload-s3/doc/uninstall/).
+
 ### 0.3.6 - 2016-05-30 ###
 * Improvement: Now checks that the `curl_multi_exec` function is available.
 
