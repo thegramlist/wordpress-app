@@ -1,9 +1,9 @@
 === AddToAny Share Buttons ===
 Contributors: micropat, addtoany
-Tags: AddToAny, sharing, share, social, share button, share buttons, share links, social icons, social media, media, marketing, bookmark, bookmarks, save, post, posts, page, pages, images, image, admin, analytics, statistics, stats, links, plugin, shortcode, sidebar, widget, responsive, email, e-mail, print, seo, button, amp, woocommerce, ecommerce, e-commerce, amazon, delicious, google, tumblr, linkedin, digg, reddit, facebook, facebook share, facebook like, like, twitter, twitter button, twitter share, tweet, tweet button, google plus, pinterest, pin, pin it, pinit, wanelo, buffer, stumbleupon, bitly, whatsapp, instagram, behance, flickr, foursquare, vimeo, youtube, feed, rss, addthis, sociable, share this, sharethis, shareaholic, icon, icons, vector, SVG, floating, floating buttons, wpml, wpmu, Add to Any
+Tags: AddToAny, share, sharing, social, share button, share buttons, social media, media, marketing, links, email, seo, woocommerce, ecommerce, google, linkedin, reddit, facebook, like, twitter, pinterest, whatsapp, instagram, youtube, addthis, share this, sharethis, feed, icons
 Requires at least: 3.7
-Tested up to: 4.6
-Stable tag: 1.7
+Tested up to: 4.7
+Stable tag: 1.7.7
 
 Share buttons for WordPress including the AddToAny sharing button, Facebook, Twitter, Google+, Pinterest, WhatsApp, many more, and follow icons too.
 
@@ -24,7 +24,7 @@ AddToAny is the universal sharing platform, and AddToAny's plugin is the most po
 * 3rd party buttons include the Facebook Like Button, Twitter Tweet Button, Pinterest Pin It Button, Google+ Share Button and Google +1 Button
 * Universal email sharing makes it easy to share via Gmail, Yahoo! Mail, Outlook.com (Hotmail), AOL Mail, and any other web and native apps
 
-<a href="https://www.addtoany.com/" title="Sharing buttons">Share Buttons</a> demo
+<a href="https://www.addtoany.com/">Share Buttons</a> demo
 
 = Custom Placement =
 * Before content, after content, or before & after content
@@ -35,7 +35,7 @@ AddToAny is the universal sharing platform, and AddToAny's plugin is the most po
 = Analytics Integration =
 
 * Automatic Google Analytics integration (<a href="https://www.addtoany.com/ext/google_analytics/">access guide</a>) for sharing analytics
-* Track shared links with bit.ly, goo.gl, and custom URL shorteners
+* Track shared links with Bitly, Google URL Shortener, and custom URL shorteners
 * Display share counts on posts and pages
 
 = WordPress Optimized =
@@ -62,8 +62,8 @@ AddToAny is the universal sharing platform, and AddToAny's plugin is the most po
 
 = Wide Support =
 
-* Over 9 years of active development
-* Over 5 million downloads
+* Over 10 years of development
+* Over 5.6 million downloads
 * Translated into dozens of languages
 * Ongoing support from the community
 
@@ -114,9 +114,9 @@ Something on your own device/browser/connection is likely filtering out major so
 
 Try another web browser, device, and/or Internet connection to see if the buttons appear. Tools like browserling.com or browserstack.com will give you an idea of what other people are seeing. The usual cause for this uncommon issue is 3rd party browser add-on software that blocks ads and optionally filters out major social buttons. Some security apps and Internet connections have an option to filter social buttons. Usually a social filter option is disabled by default, but if you find that some software is inappropriately filtering AddToAny buttons, <a href="https://www.addtoany.com/contact/">let AddToAny know</a>.
 
-= Is there a shortcode for sharing? =
+= What is the shortcode for sharing? =
 
-Yes, you can place your sharing buttons exactly where you want them by inserting the following shortcode in a post or page:
+You can place your share buttons exactly where you want them by inserting the following shortcode:
 `[addtoany]`
 
 Customize the shared URL like so:
@@ -174,8 +174,8 @@ To share the current URL and title (detected on the client-side):
 To hardcode the shared current URL and modify the title (server-side):
 `<?php if ( function_exists( 'ADDTOANY_SHARE_SAVE_KIT' ) ) { 
 	ADDTOANY_SHARE_SAVE_KIT( array( 
-		'linkname' => ( is_home() ? get_bloginfo( 'description' ) : wp_title( '', false ) ),
-		'linkurl'  => ( is_ssl() ? 'https://' : 'http://' ) . $_SERVER["HTTP_HOST"] . $_SERVER['REQUEST_URI'],
+		'linkname' => is_home() ? get_bloginfo( 'description' ) : wp_title( '', false ),
+		'linkurl'  => esc_url_raw( ( is_ssl() ? 'https://' : 'http://' ) . $_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI'] ),
 	) );
 } ?>`
 
@@ -333,6 +333,39 @@ Upload (or move) the `add-to-any` plugin directory into the `/wp-content/mu-plug
 5. Settings panel
 
 == Changelog ==
+
+= 1.7.7 =
+* Resolve syntax issue with [out-of-date PHP versions](https://secure.php.net/eol.php) below PHP 5.3
+
+= 1.7.6 =
+* Skip background colors on AMP icons for [out-of-date PHP versions](https://secure.php.net/eol.php) below PHP 5.3
+
+= 1.7.5 =
+* Add background colors to share buttons on [AMP](https://wordpress.org/plugins/amp/) (Accelerated Mobile Pages) to support new AddToAny SVG icons
+* Fix AMP issue from `in_the_loop` check in 1.7.3
+* Remove `in_the_loop` context check because AMP doesn't use the loop
+* Use packaged AddToAny icon in admin (thanks xaviernieto)
+
+= 1.7.4 =
+* Fix custom/secondary contexts check when the WP query object is unavailable
+
+= 1.7.3 =
+* Add icon size options for the floating share buttons
+* Replace packaged PNG icons with SVG icons
+* Update services in AddToAny settings
+* Update standard placement to prevent the share buttons from automatically appearing in custom/secondary contexts
+* Set feed URL & title in AddToAny Follow widgets using HTML5 data attributes
+
+= 1.7.2 =
+* Accept arguments in universal button template tag for additional classes and HTML contents
+* Override box shadow on buttons in some themes such as the new Twenty Seventeen default theme in WordPress 4.7
+
+= 1.7.1 =
+* Fix floating share buttons fallback so that the current page is shared by default
+* Show meta box ("Show sharing buttons") below the WordPress editor when a floating share bar is enabled
+* Remove deprecated option that displayed the title in the mini menu
+* Add Douban share button
+* Add Draugiem share button
 
 = 1.7 =
 * Simplify AddToAny asynchronous loading method
@@ -578,7 +611,7 @@ Upload (or move) the `add-to-any` plugin directory into the `/wp-content/mu-plug
 * Point to additional placement options and information
 * Remove old placement instructions for hardcoding
 * Remove old error reporting suppression in admin
-* Ukrainian translation (by Michael Yunat, http://getvoip.com)
+* Ukrainian translation (by Michael Yunat)
 
 = 1.3.2 =
 * Avoid loading button script in admin, especially for visual editor plugins
