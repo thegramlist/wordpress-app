@@ -11,7 +11,9 @@ include('includes/subscribe_suggest.php');
 include('includes/gramlist_effect.php'); 
 include('includes/contact.php'); 
 include('includes/clients.php'); 
-include('includes/feed.php'); 
+/*
+include('includes/feed.php');
+*/ 
 ?>
 <div class="explore-wrapper active">
 <span class="explore-label">Explore</span>

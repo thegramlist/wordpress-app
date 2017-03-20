@@ -750,14 +750,18 @@ jQuery(function() {
 
 
 
-
+var loaderInterval = 10;
+var loadingTimeLimit = 4000;
+var loadingTime = 0;
 
 var everythingLoaded = setInterval(function() {
-  if (/loaded|complete/.test(document.readyState)) {
+  if (/loaded|complete/.test(document.readyState) || loadingTime > loadingTimeLimit) {
     clearInterval(everythingLoaded);
     jQuery('body').addClass('loaded');
   }
-}, 10);
+  loadingTime += loaderInterval;
+}, loaderInterval);
+
 
 
 

@@ -56,7 +56,6 @@ if ( have_posts() ) : while ( have_posts() ) : the_post();
 	<div class="max-width-container wysiwyg-content spaced-content limited-width-content list-content" itemprop="text">
 		<?php echo the_content();?>
 		
-		<?php /* USE IF EVER NEED TO PROGRAM OUR OWN SHARING FUNCTIONALITY ?>
 		<div class="post-social">
 			<h3>Share</h3>
             <ul class="header-social-navigation center-vertically">
@@ -92,7 +91,7 @@ if ( have_posts() ) : while ( have_posts() ) : the_post();
                 </li>
             </ul>
 		</div>
-		<?php */ ?>
+		
 		
 	</div>
 

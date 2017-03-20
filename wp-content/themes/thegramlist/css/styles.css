@@ -1966,6 +1966,8 @@ body {
     display: none; }
   #mc-embedded-subscribe-form .mce-table {
     width: 100%; }
+    #mc-embedded-subscribe-form .mce-table td {
+      border: none; }
     #mc-embedded-subscribe-form .mce-table .input {
       width: 90%;
       padding-right: 4px; }

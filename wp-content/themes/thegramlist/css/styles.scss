@@ -2207,6 +2207,9 @@ body {
 	}
 	.mce-table {
 		width: 100%;
+		td {
+			border: none;
+		}
 		.input {
 			width: 90%;
 			padding-right: 4px;
