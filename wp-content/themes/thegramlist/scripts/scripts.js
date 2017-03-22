@@ -491,13 +491,15 @@ jQuery(function() {
 	/* INSTAGRAM FEED */
 	var instagramFeedData ;
 	if( jQuery('#feed').length > 0 ){
-
-		// TEMP CODE, SHOULD BE REPLACED WITH PROPER CALL TO API FROM APPROVED APP
-		$.getJSON('http://whateverorigin.org/get?url=' + encodeURIComponent('https://www.instagram.com/thegramlist/media/') + '&callback=?', function(data){
-			instagramFeedData = data.contents;
-			loadInstagramFeed();
-		});
-
+		var feed = new Instafeed({
+	        get: 'user',
+	        userId: '1951313434',
+	        accessToken: '1951313434.1677ed0.3db64bcef8b140708b8b4537438433ce',
+	        success : function(data){
+	            loadInstagramFeed( data.data );
+	        }
+	    });
+	    feed.run();
 	}
 
 	function initFeedCarousel() {
@@ -523,23 +525,22 @@ jQuery(function() {
 		})
 	}
 
-	function loadInstagramFeed() {
+	function loadInstagramFeed( instagramData ) {
 		var delay = 0;
-		for( var x = 0 ; x < instagramFeedData.items.length ; x++ ){
+		for( var x = 0 ; x < instagramData.length ; x++ ){
 
 			var thisHtml = '<li style="-webkit-transition: opacity 2s ease '+delay+'s ;-moz-transition: opacity 2s ease '+delay+'s; transition: opacity 2s ease '+delay+'s;">';
-			thisHtml += '<a target="_blank" href="'+instagramFeedData.items[x].link+'">';
+			thisHtml += '<a target="_blank" href="'+instagramData[x].link+'">';
 			thisHtml += '<span class="social center-vertically">';
-			thisHtml += '<span class="likes"><span class="icon"><svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 1000 1000" enable-background="new 0 0 1000 1000" xml:space="preserve"><path d="M499.543,974.794c270.678-194.608,406.095-372.616,469.773-508.396c74.396-158.645,9.682-355.307-152.639-421.299C625.883-32.437,499.543,146.451,499.543,146.451S374.101-32.902,183.323,44.668C21.002,110.66-43.712,307.322,30.683,465.967C94.362,601.729,228.864,780.202,499.543,974.794z"/></svg></span><span class="text">'+instagramFeedData.items[x].likes.count+'</span></span>';
-			thisHtml += '<span class="comments"><span class="icon"><svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 1000 1000" enable-background="new 0 0 1000 1000" xml:space="preserve"><path fill-rule="evenodd" clip-rule="evenodd" d="M1000,973.684l-91.951-321.777c25.186-54.635,39.319-114.848,39.319-178.222c0-247.07-212.068-447.369-473.684-447.369S0,226.614,0,473.685c0,247.069,212.068,447.368,473.684,447.368c63.939,0,124.846-12.129,180.51-33.82L1000,973.684z"/></svg></span><span class="text">'+instagramFeedData.items[x].comments.count+'</span></span>';
+			thisHtml += '<span class="likes"><span class="icon"><svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 1000 1000" enable-background="new 0 0 1000 1000" xml:space="preserve"><path d="M499.543,974.794c270.678-194.608,406.095-372.616,469.773-508.396c74.396-158.645,9.682-355.307-152.639-421.299C625.883-32.437,499.543,146.451,499.543,146.451S374.101-32.902,183.323,44.668C21.002,110.66-43.712,307.322,30.683,465.967C94.362,601.729,228.864,780.202,499.543,974.794z"/></svg></span><span class="text">'+instagramData[x].likes.count+'</span></span>';
+			thisHtml += '<span class="comments"><span class="icon"><svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 1000 1000" enable-background="new 0 0 1000 1000" xml:space="preserve"><path fill-rule="evenodd" clip-rule="evenodd" d="M1000,973.684l-91.951-321.777c25.186-54.635,39.319-114.848,39.319-178.222c0-247.07-212.068-447.369-473.684-447.369S0,226.614,0,473.685c0,247.069,212.068,447.368,473.684,447.368c63.939,0,124.846-12.129,180.51-33.82L1000,973.684z"/></svg></span><span class="text">'+instagramData[x].comments.count+'</span></span>';
 			thisHtml += '</span>';
-			thisHtml += '<img src="'+instagramFeedData.items[x].images.standard_resolution.url+'"/>';
+			thisHtml += '<img src="'+instagramData[x].images.standard_resolution.url+'"/>';
 			thisHtml += '</a>';
 			thisHtml += '</li>';
 			jQuery('.feed-list').append(thisHtml);
 			delay += .05;
 		}
-
 		initFeedCarousel();
 	}
 

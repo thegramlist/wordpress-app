@@ -91,6 +91,7 @@ global $random_version;
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/1.18.0/TweenMax.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/ScrollMagic/2.0.5/ScrollMagic.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/ScrollMagic/2.0.5/plugins/animation.gsap.js"></script>
+    <script src="<?php echo $template_url;?>/scripts/instafeed.min.js"></script>    
     <script src="<?php echo $template_url;?>/scripts/scripts.js?v=<?php echo $random_version;?>"></script>    
 
     <?php wp_footer(); ?>
